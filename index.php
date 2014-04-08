@@ -20,7 +20,11 @@ for ($i=0; $i < sizeof($commands); $i++) {
 }
 
 $commands = array_values($commands);
+//echo("length of the commands is ".sizeof($commands));
 
 $app = qhq::create_application($configuration_file);
+$method = $_SERVER['REQUEST_METHOD'];
+$data = array();
+parse_str(file_get_contents("php://input"),$data);
 
-$app->process_request($commands, 'GET');
+$app->process_request($commands, $method, $data);
