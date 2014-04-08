@@ -18,29 +18,6 @@ class admins_controller extends controller{
 					}
 				}
 				break;
-			case 'DELETE':
-				$constraint = "email = '".$data['email']."'";
-				$admins = admin::query($constraint);
-				if (!$admins) {
-					echo("Fail to query, error: ".mysql_error());
-				}
-				if (!isset($admins) || empty($admins)) {
-					$this->respond_to_client(400);
-				} else {
-					$admin = $admins[0];
-					//echo("access_token is ".$data['access_token']);
-					if (strcmp($admin->access_token, $data['access_token']) == 0) {
-						if(!admin::delete($constraint)){
-							echo("Fail to delete, error: ".mysql_error());
-						} else {
-							$this->respond_to_client(200);
-						}
-					} else {
-						$this->respond_to_client(401);
-					}
-				}
-				
-				break;
 			case 'PUT':
 				$constraint = "email = '".$data['email']."'";
 				$admins = admin::query($constraint);

@@ -1,0 +1,226 @@
+{
+	"id": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+	"name": "FooyoStudio",
+	"description": "",
+	"order": [
+		"d7eaed09-8b9c-6c33-4b40-616bab8642ef",
+		"d04c0bd2-f2a6-fe31-2b38-2f188c256a26",
+		"9718014d-034e-e2eb-28f6-fe7b9506683a",
+		"2c52b0cd-e508-3153-f54f-e9af58b4c95c",
+		"63d2210e-8423-cf7a-9811-8f4afb707d63",
+		"31d4f324-2a88-1953-a94f-16fe57730dfc",
+		"089e249c-2583-95d8-b94d-baf4b61e877e",
+		"81373f77-311e-0010-83c2-ba86fb828e43"
+	],
+	"folders": [],
+	"timestamp": 1396917137071,
+	"synced": false,
+	"requests": [
+		{
+			"id": "089e249c-2583-95d8-b94d-baf4b61e877e",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/projects/87407368",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"name": "Delete a project(including all replies)",
+			"description": "uri: api/projects/:reference_id\nmethod: DELETE\nsuccess response: 200\nfailure response: 400 for no such project.",
+			"descriptionFormat": "html",
+			"time": 1396921450810,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"synced": false
+		},
+		{
+			"id": "2c52b0cd-e508-3153-f54f-e9af58b4c95c",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/admins/5",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"name": "Fetch an admin's data",
+			"description": "uri: api/admins/:admin_id\nmethod: GET\nsuccess_response: 200 with JSON data:\n\t\t  'access_token' => xxx,\n          'name' => xxx,\n          'email' => xxx,\n          'time_created' => xxx\nfailure response: 400 for no such admin",
+			"descriptionFormat": "html",
+			"time": 1396919869773,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"synced": false
+		},
+		{
+			"id": "31d4f324-2a88-1953-a94f-16fe57730dfc",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/projects/87407368",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get the info of a project(including all rep<br/>lies)",
+			"description": "get the information of a project, including all the replies.\nuri: api/projects/:reference_id\nmethod: GET\nsuccess response: 400 with JSON array:\n\t\t'user_name' => xxx\n        'time_created' => xxx\n        'project_description' => xxx\n        'replies' => [[replyer,content,time_created], [replyer,content,time_created], ... ]\nfailure response: 400 for no such project",
+			"descriptionFormat": "html",
+			"time": 1396921392780,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"synced": false
+		},
+		{
+			"id": "63d2210e-8423-cf7a-9811-8f4afb707d63",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/projects",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "reference_id",
+					"value": "87407368",
+					"type": "text"
+				},
+				{
+					"key": "user_name",
+					"value": "Sigou",
+					"type": "text"
+				},
+				{
+					"key": "project_description",
+					"value": "I want to do a replacement for wechat!",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Create a Project by user",
+			"description": "Any one can create a project using a reference string, so that they don't have to register. They will view the project discussion via the reference string they set during the creation process. user_name is the name the user would like to be called in the discussion.\nuri: api/projects\nmethod: POST\ndata: JSON array:\n\t\t'reference_id' => xxx\n        'user_name' => xxx\n        'project_description => xxx\nsuccess response: 201",
+			"descriptionFormat": "html",
+			"time": 1396921220222,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"synced": false
+		},
+		{
+			"id": "81373f77-311e-0010-83c2-ba86fb828e43",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/projects/87407368",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "replyer",
+					"value": "Sigou",
+					"type": "text"
+				},
+				{
+					"key": "content",
+					"value": "How much will is cost?",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "create a reply to a project",
+			"description": "Front end shoud ensure that the replyer's name should be the user's name or a client's name.\nuri: api/projects/:reference_id\nmethod: PUT\ndata: JSON array:\n\t\t'replyer' => xxx\n        'content' => xxx\nsuccess response:201",
+			"descriptionFormat": "html",
+			"time": 1396925064621,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"synced": false
+		},
+		{
+			"id": "9718014d-034e-e2eb-28f6-fe7b9506683a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/admins",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "qingchengnus@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "credential",
+					"value": "1352463570",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "98968286",
+					"type": "text"
+				},
+				{
+					"key": "name",
+					"value": "Qing Cheng",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"time": 1396918524238,
+			"name": "Create an admin",
+			"description": "create an admin using credential: 1352463570.\nuri: api/admins\nmethod: POST\ndata: JSON array:\n\t\t'email' => xxx\n        'password' => xxx\n        'credential' => xxx\nsuccess response: 201 with JSON data:\n\t\t\t'access_token' => xxx\nfailure response: 401 for wrong credential.",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "d04c0bd2-f2a6-fe31-2b38-2f188c256a26",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/admins",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "email",
+					"value": "qingchengnus@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "98968286",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"time": 1396918527757,
+			"name": "Admin login",
+			"description": "uri: api/admins\nmethod: PUT\ndata: JSON array:\n\t\t\t'email' => xxx\n            'password' => xxx\nsuccess response: 200 with JSON data:\n\t\t\t\taccess_token => xxx\n                admin_id => xxx\nfailure response:400 for no such admin\n\t\t\t 401 for wrong password",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "d7eaed09-8b9c-6c33-4b40-616bab8642ef",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "localhost/qhq/admins/5",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [
+				{
+					"key": "access_token",
+					"value": "cc39cb77dd4f47d858c1c33d5673f93dcc502c6b",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"time": 1396919934084,
+			"name": "Delete an admin",
+			"description": "delete an admin,\nuri:\napi/admins/:admin_id\ndata: JSON array:\n           access_token => xxx\nmethod: DELETE\nsuccess response: 200\nfailure response:400 no such admin\n\t            401 wrong access_token",
+			"collectionId": "3997bf8e-06dc-d2c5-818e-b392ac71dfe2",
+			"responses": [],
+			"synced": false
+		}
+	]
+}

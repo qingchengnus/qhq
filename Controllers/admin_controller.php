@@ -20,10 +20,9 @@ class admin_controller extends controller{
 					//echo("access_token is ".$data['access_token']);
 					
 					$message = array("access_token" => $admin->access_token,
-									 "admin_id" => $admin->admin_id,
+									 "email" => $admin->email,
 									 "name" => $admin->name,
-									 "time_created" => $admin->time_created,
-									 "admin_id" => $admin->admin_id);
+									 "time_created" => $admin->time_created);
 					$this->respond_to_client(200, $message);
 					
 				}
