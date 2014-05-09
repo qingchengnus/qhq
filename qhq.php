@@ -198,42 +198,47 @@ abstract class qhq_app{
 
 				$db_password = $database['password'];
 
-				$con = mysql_connect($db_hostname, $db_username, $db_password);
+				$db_name = $database['db_name']; 
 
-				if (!$con) {
-						die('Failed to connect to host:' . $db_hostname . ' Error: ' . mysql_error());
-				} else {
-					$db_name = $database['db_name']; 
-					$sql = mysql_select_db($db_name, $con);
-					if (!$sql) {
-						if(isset($configure['db_creation_language'])){
-							$db_creation_language = $configure['db_creation_language'];
-							$new_database_query = "CREATE DATABASE `".$db_name."`";
-					    	mysql_query($new_database_query, $con);
-					    	echo (mysql_error());
-					    	//$con = mysql_connect($db_hostname, $db_username, $db_password);
-					    	$sql = mysql_select_db($db_name, $con);
-					    	if (!$sql) {
-					    		echo("db name is ".$db_name);
-					    	}
-					    	if (is_array($db_creation_language)) {
-					    		foreach ($db_creation_language as $new_table_query) {
-					    			if(!mysql_query($new_table_query, $con)){
-					    				echo('Failed to create table. ' . $db_hostname . ' Error: ' . mysql_error());
-					    				$query = "DROP DATABASE `".$db_name."`";
-					    				mysql_query($query, $con);
-					    			}
-					    		}
-					    	} else {
-					    		if(!mysql_query($db_creation_language, $con)){
-					    			echo('Failed to create table. ' . $db_hostname . ' Error: ' . mysql_error());
-					    			$query = "DROP DATABASE `".$db_name."`";
-					    			mysql_query($query, $con);
-					    		}
-					    	}
+				if ($db_name != '' && $db_username != '') {
+					$con = mysql_connect($db_hostname, $db_username, $db_password);
+
+					if (!$con) {
+							die('Failed to connect to host:' . $db_hostname . ' Error: ' . mysql_error());
+					} else {
+						$db_name = $database['db_name']; 
+						$sql = mysql_select_db($db_name, $con);
+						if (!$sql) {
+							if(isset($configure['db_creation_language'])){
+								$db_creation_language = $configure['db_creation_language'];
+								$new_database_query = "CREATE DATABASE `".$db_name."`";
+						    	mysql_query($new_database_query, $con);
+						    	echo (mysql_error());
+						    	//$con = mysql_connect($db_hostname, $db_username, $db_password);
+						    	$sql = mysql_select_db($db_name, $con);
+						    	if (!$sql) {
+						    		echo("db name is ".$db_name);
+						    	}
+						    	if (is_array($db_creation_language)) {
+						    		foreach ($db_creation_language as $new_table_query) {
+						    			if(!mysql_query($new_table_query, $con)){
+						    				echo('Failed to create table. ' . $db_hostname . ' Error: ' . mysql_error());
+						    				$query = "DROP DATABASE `".$db_name."`";
+						    				mysql_query($query, $con);
+						    			}
+						    		}
+						    	} else {
+						    		if(!mysql_query($db_creation_language, $con)){
+						    			echo('Failed to create table. ' . $db_hostname . ' Error: ' . mysql_error());
+						    			$query = "DROP DATABASE `".$db_name."`";
+						    			mysql_query($query, $con);
+						    		}
+						    	}
+							}
 						}
 					}
 				}
+				
 			}
 		}
 	}
